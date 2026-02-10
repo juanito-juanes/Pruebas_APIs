@@ -1,0 +1,34 @@
+import requests
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+SAP_USER = os.getenv("SAP_USER")
+SAP_PASSWORD = os.getenv("SAP_PASSWORD")
+
+url = "https://fiorigsp.gransolar.com/sap/opu/odata/sap/i_materialstock_cds/I_MaterialStock"
+
+params = {
+    "$filter": "Material eq 'M000002403' and Plant eq 'IT36'",
+    "$top": 50
+}
+
+headers = {
+    "Accept": "application/json"
+}
+
+response = requests.get(
+    url,
+    params=params,
+    headers=headers,
+    auth=(SAP_USER, SAP_PASSWORD)
+)
+
+data = response.json()
+resultados = data["d"]["results"]
+
+print(f"Registros encontrados: {len(resultados)}")
+
+for r in resultados:
+    print(f"Almacén: {r['StorageLocation']} | Stock: {r['MatlWrhsStkQtyInMatlBaseUnit']} {r['MaterialBaseUnit']}")
