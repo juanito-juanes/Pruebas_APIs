@@ -1,0 +1,6 @@
+Este archivo fue creado desde Claude Desktop mediante el MCP de GitHub.
+
+Timestamp: 2026-02-13
+Propósito: Probar funcionalidad del servidor MCP
+
+Puedes eliminarlo cuando quieras desde GitHub o localmente.
